@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Examples.Charge.Domain.Aggregates.ExampleAggregate.Interfaces;
 using Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces;
 
 namespace Examples.Charge.Domain.Aggregates.PersonAggregate

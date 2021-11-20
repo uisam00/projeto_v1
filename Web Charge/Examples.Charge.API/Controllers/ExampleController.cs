@@ -4,6 +4,9 @@ using Examples.Charge.Application.Interfaces;
 using Examples.Charge.Application.Messages.Request;
 using Examples.Charge.Application.Messages.Response;
 using System.Threading.Tasks;
+using Examples.Charge.Domain.Aggregates.ExampleAggregate;
+using System;
+using Microsoft.AspNetCore.Http;
 
 namespace Examples.Charge.API.Controllers
 {
@@ -27,10 +30,6 @@ namespace Examples.Charge.API.Controllers
             return Response(null);
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] ExampleRequest request)
-        {
-            return Response(0, null);
-        }
+       
     }
 }

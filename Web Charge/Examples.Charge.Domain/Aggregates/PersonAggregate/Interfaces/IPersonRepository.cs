@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
 {
-    public interface IPersonRepository
+    public interface IPersonRepository 
     {
-        Task<IEnumerable<PersonAggregate.Person>> FindAllAsync();
+        Task<IEnumerable<Person>> FindAllAsync(); 
+        Task<Person> FindByIdAsync(int id);
+
     }
 }
