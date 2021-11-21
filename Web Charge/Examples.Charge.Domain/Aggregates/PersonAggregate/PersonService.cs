@@ -27,7 +27,7 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
 
                 if (await _commonRepository.SaveChangesAsync())
                 {
-                    var personReturn = await _personRepository.FindByIdAsync(newPerson.BusinessEntityID);
+                    var personReturn = await _personRepository.FindByIDAsync(newPerson.BusinessEntityID);
 
                     return personReturn;
                 }
@@ -56,11 +56,11 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
             }
         }
 
-        public async Task<Person> FindPersonByIdAsync(int BusinessEntityID)
+        public async Task<Person> FindPersonByIDAsync(int BusinessEntityID)
         {
             try
             {
-                var person = await _personRepository.FindByIdAsync(BusinessEntityID);
+                var person = await _personRepository.FindByIDAsync(BusinessEntityID);
                 if (person == null) return null;
 
                 var result = person;

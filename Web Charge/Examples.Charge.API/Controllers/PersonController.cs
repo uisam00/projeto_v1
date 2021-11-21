@@ -39,11 +39,11 @@ namespace Examples.Charge.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(PersonRequest reuest)
+        public async Task<IActionResult> Post([FromBody] PersonRequest request)
         {
             try
             {
-                var person = await _facade.AddPerson(reuest);
+                var person = await _facade.AddPerson(request);
                 if (person == null) return NoContent();
 
                 return Ok(person);

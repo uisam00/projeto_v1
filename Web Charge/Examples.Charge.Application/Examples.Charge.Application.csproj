@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="Dtos\ExampleDto.cs" />
+    <Compile Remove="Facade\Class1.cs" />
   </ItemGroup>
 
   <ItemGroup>

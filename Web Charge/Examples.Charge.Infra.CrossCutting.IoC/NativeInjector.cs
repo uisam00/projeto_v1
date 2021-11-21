@@ -23,14 +23,16 @@ namespace Examples.Charge.Infra.CrossCutting.IoC
             services.AddTransient<PersonDto>();
 
             services.AddScoped<IPersonFacade, PersonFacade>();
+            services.AddScoped<IPersonPhoneFacade, PersonPhoneFacade>();
+            services.AddScoped<IPhoneNumberTypeFacade, PhoneNumberTypeFacade>();
+
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonPhoneService, PersonPhoneService>();
+            services.AddScoped<IPhoneNumberTypeService, PhoneNumberTypeService>();
+
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<ICommonRepository, CommonRepository>();
-
-            services.AddScoped<IPersonPhoneService, PersonPhoneService>();
             services.AddScoped<IPersonPhoneRepository, PersonPhoneRepository>();
-            
-            services.AddScoped<IPhoneNumberTypeService, PhoneNumberTypeService>();
             services.AddScoped<IPhoneNumberTypeRepository, PhoneNumberTypeRepository>();
         }
 
@@ -39,6 +41,8 @@ namespace Examples.Charge.Infra.CrossCutting.IoC
             new MapperConfiguration(configuration =>
             {
                 configuration.AddProfile<PersonProfile>();
+                configuration.AddProfile<PersonPhoneProfile>();
+                configuration.AddProfile<PhoneNumberTypeProfile>();
             }).CompileMappings();
         }
     }

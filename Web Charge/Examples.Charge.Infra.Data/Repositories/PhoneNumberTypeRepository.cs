@@ -28,7 +28,7 @@ namespace Examples.Charge.Infra.Data.Repositories
 
         }
 
-        public async Task<PhoneNumberType> FindByIdAsync(int PhoneNumberTypeID)
+        public async Task<PhoneNumberType> FindByIDAsync(int PhoneNumberTypeID)
         {
             IQueryable<PhoneNumberType> query = _context.PhoneNumberType;
 

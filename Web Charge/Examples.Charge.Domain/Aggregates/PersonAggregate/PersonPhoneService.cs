@@ -27,7 +27,7 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
 
                 if (await _commonRepository.SaveChangesAsync())
                 {
-                    var personPhoneReturn = await _personPhoneRepository.FindByIdAsync(newPersonPhone.BusinessEntityID, newPersonPhone.PhoneNumberTypeID);
+                    var personPhoneReturn = await _personPhoneRepository.FindByIDAsync(newPersonPhone.BusinessEntityID, newPersonPhone.PhoneNumberTypeID);
 
                     return personPhoneReturn;
                 }
@@ -38,16 +38,15 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<PersonPhone> UpdatePersonPhone(int BusinessEntityID, int PhoneNumberTypeID, PersonPhone updatedPersonPhone)
+        public async Task<PersonPhone> UpdatePersonPhone(PersonPhone updatedPersonPhone)
         {
             try
             {
-
                 _commonRepository.Update(updatedPersonPhone);
 
                 if (await _commonRepository.SaveChangesAsync())
                 {
-                    var personPhoneReturn = await _personPhoneRepository.FindByIdAsync(updatedPersonPhone.BusinessEntityID, updatedPersonPhone.PhoneNumberTypeID);
+                    var personPhoneReturn = await _personPhoneRepository.FindByIDAsync(updatedPersonPhone.BusinessEntityID, updatedPersonPhone.PhoneNumberTypeID);
 
                     return personPhoneReturn;
                 }
@@ -63,7 +62,7 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
         {
             try
             {
-                var personPhone = await _personPhoneRepository.FindByIdAsync(BusinessEntityID, PhoneNumberTypeID);
+                var personPhone = await _personPhoneRepository.FindByIDAsync(BusinessEntityID, PhoneNumberTypeID);
                 if (personPhone == null) throw new Exception("Não foi possível encontrar o telefone.");
 
                 _commonRepository.Delete(personPhone);
@@ -92,11 +91,11 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
             }
         }
 
-        public async Task<PersonPhone> FindPersonPhoneByIdAsync(int BusinessEntityID, int PhoneNumberTypeID)
+        public async Task<PersonPhone> FindPersonPhoneByIDAsync(int BusinessEntityID, int PhoneNumberTypeID)
         {
             try
             {
-                var personPhone = await _personPhoneRepository.FindByIdAsync(BusinessEntityID, PhoneNumberTypeID);
+                var personPhone = await _personPhoneRepository.FindByIDAsync(BusinessEntityID, PhoneNumberTypeID);
                 if (personPhone == null) return null;
 
                 var result = personPhone;

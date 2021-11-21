@@ -9,6 +9,6 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
     {
         Task<Person> AddPerson(Person newPerson);
         Task<List<Person>> FindAllPeopleAsync();
-        Task<Person> FindPersonByIdAsync(int BusinessEntityID);
+        Task<Person> FindPersonByIDAsync(int BusinessEntityID);
     }
 }

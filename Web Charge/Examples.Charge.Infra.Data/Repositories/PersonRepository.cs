@@ -29,7 +29,7 @@ namespace Examples.Charge.Infra.Data.Repositories
 
         }
 
-        public async Task<Person> FindByIdAsync(int BusinessEntityID)
+        public async Task<Person> FindByIDAsync(int BusinessEntityID)
         {
             IQueryable<Person> query = _context.Person
                                                .Include(p => p.Phones)
