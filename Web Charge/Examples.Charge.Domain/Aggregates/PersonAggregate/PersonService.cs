@@ -39,6 +39,45 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
             }
         }
 
+        public async Task<Person> UpdatePerson(Person updatedPerson)
+        {
+            try
+            {
+                var personExist = await _personRepository.FindByIDAsync(updatedPerson.BusinessEntityID);
+                if (personExist == null) throw new Exception("Não existe essa pessoa no sistema.");
+
+                _commonRepository.Update(updatedPerson);
+
+                if (await _commonRepository.SaveChangesAsync())
+                {
+                    var personReturn = await _personRepository.FindByIDAsync(updatedPerson.BusinessEntityID);
+
+                    return personReturn;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<bool> DeletePerson(int BusinessEntityID)
+        {
+            try
+            {
+                var personPhone = await _personRepository.FindByIDAsync(BusinessEntityID);
+                if (personPhone == null) throw new Exception("Não foi possível encontrar essa pessoa.");
+
+                _commonRepository.Delete(personPhone);
+                return await _commonRepository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<List<Person>> FindAllPeopleAsync()
         {
             try

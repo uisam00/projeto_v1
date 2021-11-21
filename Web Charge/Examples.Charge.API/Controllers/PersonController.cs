@@ -6,6 +6,7 @@ using Examples.Charge.Application.Messages.Request;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Http;
+using Examples.Charge.Application.Dtos;
 
 namespace Examples.Charge.API.Controllers
 {
@@ -36,6 +37,21 @@ namespace Examples.Charge.API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
                     $"Erro ao tentar recuperar pessoas. Erro: {ex.Message}");
             }
+        }        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PersonListResponse>> Get(int id) {
+            try
+            {
+                var person = await _facade.FindPersonByIDAsync(id);
+                if (person == null) return NoContent();
+
+                return Ok(person);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar pessoa. Erro: {ex.Message}");
+            }
         }
 
         [HttpPost]
@@ -52,6 +68,46 @@ namespace Examples.Charge.API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
                     $"Erro ao tentar adicionar pessoa. Erro: {ex.Message}");
+            }
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] PersonDto request)
+        {
+            try
+            {
+                var person = await _facade.UpdatePerson(request);
+                if (person == null) return NoContent();
+
+                return Ok(person);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar atualizar telefone. Erro: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var phoneResponse = await _facade.FindPersonByIDAsync(id);
+                if (phoneResponse == null) return NoContent();
+
+                if (await _facade.DeletePerson(id))
+                {
+                    return Ok(new { message = "Deletado" });
+                }
+                else
+                {
+                    throw new Exception("Ocorreu um problem não específico ao tentar deletar pessoa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar deletar pessoa. Erro: {ex.Message}");
             }
         }
 

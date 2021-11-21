@@ -2,8 +2,6 @@ import { PersonPhoneService } from './../person-phone.service';
 import { PersonPhone } from './../../../Models/person-phone';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog'
-import { ConfirmDialogComponent } from '../../template/confirm-dialog/confirm-dialog.component';
-
 @Component({
   selector: 'app-person-phone-read',
   templateUrl: './person-phone-read.component.html',
@@ -31,27 +29,14 @@ export class PersonPhoneReadComponent implements OnInit {
   }
 
   deletePersonPhone(id: string) : void {
-    let nomePersonPhone = '';
+    let phoneNumber = '';
     this.personPhoneService.readById(id ? id : '').subscribe(personPhone => {
-      nomePersonPhone = personPhone.name;
+      phoneNumber = personPhone.phoneNumber;
     })
 
     this.personPhoneService.delete(id).subscribe(() => {
       this.carregarDados();
-      this.personPhoneService.showMessage(`O número: ${nomePersonPhone} foi deletado.`);
-    })
-  }
-
-  openDialog(id: string): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width:'350px',
-      data: 'Tem certeza que quer excluir esse dado?'
-    })
-    dialogRef.afterClosed().subscribe(res => {
-      if(res){
-        this.deletePersonPhone(id);
-
-      }
+      this.personPhoneService.showMessage(`O número: ${phoneNumber} foi deletado.`);
     })
   }
 

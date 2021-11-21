@@ -9,11 +9,7 @@ namespace Examples.Charge.Application.AutoMapper
     {
         public PersonProfile()
         {
-            CreateMap<Person, PersonDto>()
-               .ReverseMap()
-               .ForMember(dest => dest.BusinessEntityID, opt => opt.MapFrom(src => src.BusinessEntityID))
-               .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-               .ForMember(dest => dest.Phones, opt => opt.MapFrom(src => src.Phones));
+            CreateMap<Person, PersonDto>().ReverseMap();
         }
     }
 }

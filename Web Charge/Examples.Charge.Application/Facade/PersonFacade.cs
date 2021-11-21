@@ -37,15 +37,33 @@ namespace Examples.Charge.Application.Facade
             {
                 throw new Exception(ex.Message);
             }
-        }        
-        
+        }
+        public async Task<PersonResponse> FindPersonByIDAsync(int BusinessEntityID)
+        {
+            try
+            {
+                var result = await _personService.FindPersonByIDAsync(BusinessEntityID);
+                if (result != null)
+                {
+                    var response = new PersonResponse();
+                    response.PersonObject = new PersonDto();
+                    response.PersonObject = _mapper.Map<PersonDto>(result);
+                    return response;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<PersonResponse> AddPerson(PersonRequest request)
         {
             try
             {
                 Person newPerson = new Person
                 {
-                    Name = request.Nome
+                    Name = request.Name
                 };
                 var result = await _personService.AddPerson(newPerson);
                 if(result != null)
@@ -56,6 +74,41 @@ namespace Examples.Charge.Application.Facade
                     return response;
                 }
                 return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<PersonResponse> UpdatePerson(PersonDto request)
+        {
+            try
+            {
+                var personPhone = await _personService.FindPersonByIDAsync(request.BusinessEntityID);
+                if (personPhone == null) return null;
+
+                _mapper.Map(request, personPhone);
+
+                var result = await _personService.UpdatePerson(personPhone);
+                if (result != null)
+                {
+                    var response = new PersonResponse();
+                    response.PersonObject = new PersonDto();
+                    response.PersonObject = _mapper.Map<PersonDto>(result);
+                    return response;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<bool> DeletePerson(int BusinessEntityID)
+        {
+            try
+            {
+                return await _personService.DeletePerson(BusinessEntityID);
             }
             catch (Exception ex)
             {

@@ -24,7 +24,8 @@
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26",
     "@angular/cdk": "^6.2.0",
-    "@angular/material": "^6.2.0"
+    "@angular/material": "^6.2.0",
+    "ngx-spinner": "^8.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
