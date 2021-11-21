@@ -1,4 +1,4 @@
-export class UpdatePersonRequestDto{
+export class PersonRequestDto{
   businessEntityID: number;
   name: string;
 }

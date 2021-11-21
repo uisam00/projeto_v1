@@ -37,6 +37,21 @@ namespace Examples.Charge.API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
                     $"Erro ao tentar recuperar pessoas. Erro: {ex.Message}");
             }
+        }        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PersonListResponse>> Get(int id) {
+            try
+            {
+                var person = await _facade.FindPersonByIDAsync(id);
+                if (person == null) return NoContent();
+
+                return Ok(person);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar pessoa. Erro: {ex.Message}");
+            }
         }
 
         [HttpPost]

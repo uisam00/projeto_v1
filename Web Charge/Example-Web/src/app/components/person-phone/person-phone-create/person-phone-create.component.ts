@@ -42,18 +42,18 @@ export class PersonPhoneCreateComponent implements OnInit {
   updatePersonPhone() : void {
     this.personPhoneService.update(this.personPhone).subscribe(() => {
       this.personPhoneService.showMessage(`Novo número: ${this.personPhone.phoneNumber}`)
-      this.router.navigate(['/phone-number'])
+      this.router.navigate(['/person-phone'])
     })
   }
 
   createPersonPhone() : void {
     this.personPhoneService.create(this.personPhone).subscribe(() => {
       this.personPhoneService.showMessage(`O número: ${this.personPhone.phoneNumber} foi salv0 com sucesso`);
-      this.router.navigate(['/phone-number']);
+      this.router.navigate(['/person-phone']);
     });
   }
 
   cancelPersonPhone() : void {
-    this.router.navigate(['/phone-number']);
+    this.router.navigate(['/person-phone']);
   }
 }

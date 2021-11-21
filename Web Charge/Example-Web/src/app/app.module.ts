@@ -6,9 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './components/template/nav/nav.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { HeaderComponent } from './components/template/header/header.component';
-import { ConfirmDialogComponent } from './components/template/confirm-dialog/confirm-dialog.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule, MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './views/home/home.component';
@@ -16,7 +15,11 @@ import { PersonPhoneCrudComponent } from './views/person-phone-crud/person-phone
 import { PersonPhoneCreateComponent } from './components/person-phone/person-phone-create/person-phone-create.component';
 import { PersonPhoneReadComponent } from './components/person-phone/person-phone-read/person-phone.component';
 import { PersonPhoneUpdateComponent } from './components/person-phone/person-phone-update/person-phone-update.component';
-
+import { PersonCrudComponent } from './views/person-crud/person-crud.component';
+import { PersonCreateComponent } from './components/person/person-create/person-create.component';
+import { PersonReadComponent } from './components/person/person-read/person-read.component';
+import { PersonUpdateComponent } from './components/person/person-update/person-update.component';
+import { PersonDeleteComponent } from './components/person/person-delete/person-delete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,11 @@ import { PersonPhoneUpdateComponent } from './components/person-phone/person-pho
     PersonPhoneCreateComponent,
     PersonPhoneReadComponent,
     PersonPhoneUpdateComponent,
-    ConfirmDialogComponent,
+    PersonCrudComponent,
+    PersonCreateComponent,
+    PersonReadComponent,
+    PersonUpdateComponent,
+    PersonDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +54,7 @@ import { PersonPhoneUpdateComponent } from './components/person-phone/person-pho
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule,
-    MatDialogModule
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

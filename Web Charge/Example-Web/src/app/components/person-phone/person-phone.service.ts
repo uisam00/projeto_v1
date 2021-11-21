@@ -1,4 +1,4 @@
-import { PersonPhone } from './person-phone.model';
+import { PersonPhone } from './../../Models/person-phone';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
