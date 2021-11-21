@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-title>Novo Produto</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="personPhone.name" name="name">
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Glútem: </mat-label>
+            <mat-select matInput required [(ngModel)]="personPhone.isGlutenFree" name="isGlutenFree">
+              <mat-option [value]="false">
+                Possui Glútem
+              </mat-option>
+              <mat-option [value]="true">
+                Não possui Glútem
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+
+    </form>
+    <button mat-raised-button (click)="createOrUpdate() " color="primary">
+        Salvar
+    </button>
+
+    <button mat-raised-button (click)="cancelPersonPhone() " color="Red">
+        Cancelar
+    </button>
+</mat-card>
+

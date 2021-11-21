@@ -2,6 +2,6 @@
 {
     public class PersonRequest
     {
-        public string Nome { get; set; }
+        public string Name { get; set; }
     }
 }
