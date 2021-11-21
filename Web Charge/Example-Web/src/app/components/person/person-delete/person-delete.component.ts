@@ -65,6 +65,6 @@ export class PersonDeleteComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(["/products"]);
+    this.router.navigate(["/person"]);
   }
 }
