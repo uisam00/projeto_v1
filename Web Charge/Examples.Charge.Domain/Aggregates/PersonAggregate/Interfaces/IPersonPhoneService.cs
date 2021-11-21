@@ -12,6 +12,7 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
         Task<bool> DeletePersonPhone(int BusinessEntityID, int PhoneNumberTypeID);
         Task<List<PersonPhone>> FindAllPersonPhonesAsync();
         Task<PersonPhone> FindPersonPhoneByIDAsync(int BusinessEntityID, int PhoneNumberTypeID);
+        Task<List<PersonPhone>> FindAllByBusinessEntityIDAsync(int BusinessEntityID);
 
     }
 }

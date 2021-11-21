@@ -43,6 +43,24 @@ namespace Examples.Charge.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetById/{id}")]
+        public async Task<ActionResult<PersonPhoneListResponse>> GetById(int id)
+        {
+            try
+            {
+                var person = await _facade.FindAllByBusinessEntityIDAsync(id);
+                if (person == null) return NoContent();
+
+                return Ok(person);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar telefone. Erro: {ex.Message}");
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(PersonPhoneRequest request)
         {

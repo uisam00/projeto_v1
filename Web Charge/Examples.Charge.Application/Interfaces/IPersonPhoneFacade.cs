@@ -12,5 +12,6 @@ namespace Examples.Charge.Application.Interfaces
         Task<PersonPhoneResponse> AddPersonPhone(PersonPhoneRequest request);
         Task<PersonPhoneResponse> UpdatePersonPhone(PersonPhoneDto request);
         Task<bool> DeletePersonPhone(PersonPhoneRequest request);
+        Task<PersonPhoneListResponse> FindAllByBusinessEntityIDAsync(int BusinessEntityID);
     }
 }

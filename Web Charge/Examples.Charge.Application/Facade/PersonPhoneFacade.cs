@@ -45,7 +45,28 @@ namespace Examples.Charge.Application.Facade
             }
         
         }
+        public async Task<PersonPhoneListResponse> FindAllByBusinessEntityIDAsync(int BusinessEntityID)
+        {
 
+
+            try
+            {
+                var result = await _personPhoneService.FindAllByBusinessEntityIDAsync(BusinessEntityID);
+                if (result != null)
+                {
+                    var response = new PersonPhoneListResponse();
+                    response.PersonPhoneObjects = new List<PersonPhoneDto>();
+                    response.PersonPhoneObjects.AddRange(result.Select(x => _mapper.Map<PersonPhoneDto>(x)));
+                    return response;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
         public async Task<PersonPhoneResponse> FindPersonPhoneByIDAsync(PersonPhoneRequest request)
         {
             try
@@ -65,7 +86,6 @@ namespace Examples.Charge.Application.Facade
                 throw new Exception(ex.Message);
             }
         }
-
         public async Task<PersonPhoneResponse> AddPersonPhone(PersonPhoneRequest request)
         {
             try
@@ -116,7 +136,6 @@ namespace Examples.Charge.Application.Facade
                 throw new Exception(ex.Message);
             }
         }
-
         public async Task<bool> DeletePersonPhone(PersonPhoneRequest request)
         {
             try

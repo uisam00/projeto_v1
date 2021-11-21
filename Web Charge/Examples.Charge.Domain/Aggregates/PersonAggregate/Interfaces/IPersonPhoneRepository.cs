@@ -7,6 +7,7 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
     {
         Task<IEnumerable<PersonPhone>> FindAllAsync();
         Task<PersonPhone> FindByIDAsync(int BusinessEntityID, int PhoneNumberTypeID);
+        Task<IEnumerable<PersonPhone>> FindAllByBusinessEntityIDAsync(int BusinessEntityID);
 
     }
 }

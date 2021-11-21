@@ -41,5 +41,18 @@ namespace Examples.Charge.Infra.Data.Repositories
 
             return await query.FirstOrDefaultAsync();
         }
+
+        public async Task<IEnumerable<PersonPhone>> FindAllByBusinessEntityIDAsync(int BusinessEntityID)
+        {
+            IQueryable<PersonPhone> query = _context.PersonPhone
+                                                    .Include(phone => phone.Person)
+                                                    .Include(phone => phone.PhoneNumberType);
+
+            query = query.AsNoTracking().OrderBy(phone => phone.BusinessEntityID)
+             .Where(phone => phone.BusinessEntityID == BusinessEntityID );
+
+            return await query.ToArrayAsync();
+
+        }
     }
 }

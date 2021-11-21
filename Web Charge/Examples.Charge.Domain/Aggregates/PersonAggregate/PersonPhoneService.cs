@@ -22,6 +22,8 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
         {
             try
             {
+                var personPhoneExist = await _personPhoneRepository.FindByIDAsync(newPersonPhone.BusinessEntityID, newPersonPhone.PhoneNumberTypeID);
+                if(personPhoneExist != null) throw new Exception("Já existe um telefone do mesmo tipo para essa pessoa.");
 
                 _commonRepository.Add(newPersonPhone);
 
@@ -42,7 +44,11 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
         {
             try
             {
-                _commonRepository.Update(updatedPersonPhone);
+                var personPhoneExist = await _personPhoneRepository.FindByIDAsync(updatedPersonPhone.BusinessEntityID, updatedPersonPhone.PhoneNumberTypeID);
+                if (personPhoneExist == null) throw new Exception("Não existe esse telefone no sistema.");
+
+                _commonRepository.Delete(personPhoneExist);
+                _commonRepository.Add(updatedPersonPhone);
 
                 if (await _commonRepository.SaveChangesAsync())
                 {
@@ -79,6 +85,23 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
             try
             {
                 var personPhones = await _personPhoneRepository.FindAllAsync();
+                if (personPhones == null) return null;
+
+                var result = personPhones.ToList();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }        
+        
+        public async Task<List<PersonPhone>> FindAllByBusinessEntityIDAsync(int BusinessEntityID) 
+        {
+            try
+            {
+                var personPhones = await _personPhoneRepository.FindAllByBusinessEntityIDAsync(BusinessEntityID);
                 if (personPhones == null) return null;
 
                 var result = personPhones.ToList();
