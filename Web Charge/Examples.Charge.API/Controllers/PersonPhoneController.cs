@@ -4,11 +4,8 @@ using Examples.Charge.Application.Messages.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Examples.Charge.Application.Messages.Request;
-using Examples.Charge.Domain.Aggregates.PersonAggregate;
 using Examples.Charge.Application.Dtos;
 
 namespace Examples.Charge.API.Controllers
@@ -44,8 +41,8 @@ namespace Examples.Charge.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetById/{id}")]
-        public async Task<ActionResult<PersonPhoneListResponse>> GetById(int id)
+        [Route("GetByPersonId/{id}")]
+        public async Task<ActionResult<PersonPhoneListResponse>> GetByPersonId(int id)
         {
             try
             {
@@ -61,6 +58,23 @@ namespace Examples.Charge.API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("GetById")]
+        public async Task<IActionResult> GetById(PersonPhoneRequest request)
+        {
+            try
+            {
+                var personPhone = await _facade.FindPersonPhoneByIDAsync(request);
+                if (personPhone == null) return NoContent();
+
+                return Ok(personPhone);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar adicionar telefone. Erro: {ex.Message}");
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> Post(PersonPhoneRequest request)
         {
@@ -97,7 +111,8 @@ namespace Examples.Charge.API.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpPost]
+        [Route("Delete")]
         public async Task<IActionResult> Delete([FromBody] PersonPhoneRequest request)
         {
             try

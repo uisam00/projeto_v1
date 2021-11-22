@@ -21,6 +21,11 @@
             edit
           </i>
         </button>
+        <button mat-button routerLink="/person-phones/{{ row.businessEntityID }}" class="edit">
+          <i class="material-icons">
+            phone
+          </i>
+        </button>
 
         <button  mat-button routerLink="/person/delete/{{ row.businessEntityID }}">
           <i class="material-icons delete">

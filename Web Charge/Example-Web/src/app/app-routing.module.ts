@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from'./views/home/home.component'
-import { PersonPhoneCrudComponent } from './views/person-phone-crud/person-phone-crud.component'
 import { PersonPhoneCreateComponent } from './components/person-phone/person-phone-create/person-phone-create.component';
 import { PersonCrudComponent } from './views/person-crud/person-crud.component';
 import { PersonCreateComponent } from './components/person/person-create/person-create.component';
 import { PersonDeleteComponent } from './components/person/person-delete/person-delete.component';
+import { PersonPhoneReadComponent } from './components/person-phone/person-phone-read/person-phone-read.component';
+import { PersonPhoneDeleteComponent } from './components/person-phone/person-phone-delete/person-phone-delete.component';
 
 const routes: Routes = [
   {
@@ -14,18 +15,21 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "person-phones",
-    component: PersonPhoneCrudComponent
+    path: "person-phones/:id",
+    component: PersonPhoneReadComponent
   },
   {
-    path: 'person-phones/create',
+    path: 'person-phones/create/:id',
     component: PersonPhoneCreateComponent
   },
   {
     path: 'person-phones/edit/:id',
     component: PersonPhoneCreateComponent
   },
-
+  {
+    path: 'person-phones/delete/:id',
+    component:PersonPhoneDeleteComponent
+  },
   {
   path: "person",
     component: PersonCrudComponent

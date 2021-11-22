@@ -13,13 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './views/home/home.component';
 import { PersonPhoneCrudComponent } from './views/person-phone-crud/person-phone-crud.component';
 import { PersonPhoneCreateComponent } from './components/person-phone/person-phone-create/person-phone-create.component';
-import { PersonPhoneReadComponent } from './components/person-phone/person-phone-read/person-phone.component';
-import { PersonPhoneUpdateComponent } from './components/person-phone/person-phone-update/person-phone-update.component';
+import { PersonPhoneReadComponent } from './components/person-phone/person-phone-read/person-phone-read.component';
 import { PersonCrudComponent } from './views/person-crud/person-crud.component';
 import { PersonCreateComponent } from './components/person/person-create/person-create.component';
 import { PersonReadComponent } from './components/person/person-read/person-read.component';
-import { PersonUpdateComponent } from './components/person/person-update/person-update.component';
 import { PersonDeleteComponent } from './components/person/person-delete/person-delete.component';
+import { PersonPhoneDeleteComponent } from './components/person-phone/person-phone-delete/person-phone-delete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +29,11 @@ import { PersonDeleteComponent } from './components/person/person-delete/person-
     PersonPhoneCrudComponent,
     PersonPhoneCreateComponent,
     PersonPhoneReadComponent,
-    PersonPhoneUpdateComponent,
     PersonCrudComponent,
     PersonCreateComponent,
     PersonReadComponent,
-    PersonUpdateComponent,
-    PersonDeleteComponent
+    PersonDeleteComponent,
+    PersonPhoneDeleteComponent
   ],
   imports: [
     BrowserModule,

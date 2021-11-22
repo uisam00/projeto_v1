@@ -30,6 +30,8 @@ export class PersonReadComponent implements OnInit {
         //this.peopleFiltrados = this.people;
       },
       error: (error: any) => {
+        this.personService.showMessage(error.message);
+
         //this.spinner.hide();
         //this.toastr.error('Erro ao Carregar os Pessoas', 'Erro!');
       },

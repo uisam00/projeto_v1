@@ -33,6 +33,8 @@ export class PersonDeleteComponent implements OnInit {
         //this.peopleFiltrados = this.people;
       },
       error: (error: any) => {
+        this.personService.showMessage(error.message);
+
         //this.spinner.hide();
         //this.toastr.error('Erro ao Carregar os Pessoas', 'Erro!');
       },
@@ -50,6 +52,8 @@ export class PersonDeleteComponent implements OnInit {
         
       },
       error: (error: any) => {
+        this.personService.showMessage(error.message);
+
         this.router.navigate(["/person"]);
 
         //this.spinner.hide();

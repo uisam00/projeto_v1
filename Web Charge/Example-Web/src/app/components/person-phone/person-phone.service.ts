@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { PersonPhoneRequestDto } from 'src/app/Dtos/person-phone-request-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonPhoneService {
 
-  baseURL = "http://localhost:62504/api/"
+  private _baseURL = "http://localhost:65012/api/"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -21,26 +23,35 @@ export class PersonPhoneService {
     })
   }
 
-  create(personPhone: PersonPhone) : Observable<PersonPhone> {
-    return this.http.post<PersonPhone>(this.baseURL+'adicionar', personPhone);
+  findSelectTypeNumber(): Observable<any> {
+    return this.http.get<any>(this._baseURL+'PhoneNumberType').pipe(take(1));
   }
 
-  read() : Observable<PersonPhone[]> {
-    return this.http.get<PersonPhone[]>(this.baseURL);
+  create(personPhone: PersonPhoneRequestDto) : Observable<any> {
+    return this.http.post<any>(this._baseURL+"PersonPhone", personPhone).pipe(take(1));
   }
 
-  readById (id: string): Observable<PersonPhone> {
-    const url = `${this.baseURL}${id}`
-    return this.http.get<PersonPhone>(url);
+  read() : Observable<any> {
+    return this.http.get<any>(this._baseURL).pipe(take(1));
   }
 
-  update(personPhone: PersonPhone) : Observable<PersonPhone> {
-    const url = `${this.baseURL}editar`
-    return this.http.post<PersonPhone>(url, personPhone);
+  readById (request: PersonPhoneRequestDto): Observable<any> {
+    const url = `${this._baseURL}PersonPhone/GetById`
+    return this.http.post<any>(url, request).pipe(take(1));
   }
 
-  delete(id: string) : Observable<PersonPhone> {
-    const url = `${this.baseURL}deletar`
-    return this.http.post<PersonPhone>(url, id);
+  readByPersonId (id: string): Observable<any> {
+    const url = `${this._baseURL}PersonPhone/GetByPersonId/${id}`
+    return this.http.get<any>(url).pipe(take(1));
+  }
+
+  update(request: PersonPhoneRequestDto) : Observable<any> {
+    const url = `${this._baseURL}PersonPhone`
+    return this.http.put<any>(url, request).pipe(take(1));
+  }
+
+  delete(request: PersonPhoneRequestDto)  {
+    const url = `${this._baseURL}PersonPhone/Delete`
+    return this.http.post<any>(url, request).pipe(take(1));
   }
 }

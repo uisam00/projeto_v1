@@ -6,9 +6,9 @@ namespace Examples.Charge.Application.Dtos
     {
         public int BusinessEntityID { get; set; }
         public int PhoneNumberTypeID { get; set; }
-
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [Phone(ErrorMessage = "O campo {0} está com número inválido")]
         public string PhoneNumber { get; set; }
+        public PersonDto Person { get; set; }
+        public PhoneNumberTypeDto PhoneNumberType { get; set; }
+
     }
 }

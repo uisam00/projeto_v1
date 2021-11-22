@@ -1,23 +1,18 @@
 <mat-card>
-    <mat-card-title>Novo Produto</mat-card-title>
+    <mat-card-title>{{ isEdit ? "Editar Telefone" : "Novo Telefone" }}</mat-card-title>
     <form>
         <mat-form-field>
-            <input matInput placeholder="Nome" [(ngModel)]="personPhone.name" name="name">
+            <input matInput placeholder="Número" [(ngModel)]="personPhone.phoneNumber" name="number">
         </mat-form-field>
 
         <mat-form-field >
-            <mat-label>Glútem: </mat-label>
-            <mat-select matInput required [(ngModel)]="personPhone.isGlutenFree" name="isGlutenFree">
-              <mat-option [value]="false">
-                Possui Glútem
-              </mat-option>
-              <mat-option [value]="true">
-                Não possui Glútem
+            <mat-label>Tipo</mat-label>
+            <mat-select [disabled]="isEdit" matInput required [(ngModel)]="personPhone.phoneNumberTypeID" name="typePhoneNumber">
+              <mat-option *ngFor="let type of selectPhoneType" [value]="type.phoneNumberTypeID">
+                {{type.name}}
               </mat-option>
             </mat-select>
         </mat-form-field>
-
-
 
     </form>
     <button mat-raised-button (click)="createOrUpdate() " color="primary">

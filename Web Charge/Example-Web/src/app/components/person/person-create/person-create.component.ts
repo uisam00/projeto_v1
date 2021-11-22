@@ -15,6 +15,7 @@ export class PersonCreateComponent implements OnInit {
     businessEntityID: null,
     name: '',
   }
+  isEdit:boolean = false;
 
   constructor(private personService: PersonService,
      private router: Router,
@@ -25,6 +26,7 @@ export class PersonCreateComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if(id != null ){
       this.getPersonById(id);
+      this.isEdit = true;
     }
   }
 
@@ -35,6 +37,7 @@ export class PersonCreateComponent implements OnInit {
         //this.peopleFiltrados = this.people;
       },
       error: (error: any) => {
+        this.personService.showMessage(error.message);
         //this.spinner.hide();
         //this.toastr.error('Erro ao Carregar os Pessoas', 'Erro!');
       },
@@ -65,6 +68,7 @@ export class PersonCreateComponent implements OnInit {
 
       },
       error: (error: any) => {
+        this.personService.showMessage(error.message);
         this.router.navigate(['/person']);
 
         //this.spinner.hide();
@@ -87,6 +91,7 @@ export class PersonCreateComponent implements OnInit {
         this.personService.showMessage(`Pessoa salva com sucesso`);
       },
       error: (error: any) => {
+        this.personService.showMessage(error.message);
         this.router.navigate(['/person']);
 
         //this.spinner.hide();

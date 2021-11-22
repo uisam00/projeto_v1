@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title> {{ person.businessEntityID == null ? "Nova Pessoa": "Editar Pessoa" }}</mat-card-title>
+    <mat-card-title> {{ isEdit ? "Editar Pessoa" : "Nova Pessoa"}}</mat-card-title>
     <form>
         <mat-form-field>
             <input matInput placeholder="Nome" [(ngModel)]="person.name" name="name">

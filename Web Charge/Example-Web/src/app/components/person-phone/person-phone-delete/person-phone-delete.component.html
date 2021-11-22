@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-title>Excluir Telefone</mat-card-title>
+  <form>
+      <mat-form-field>
+          <input matInput placeholder="Número"
+              [value]="personPhone.phoneNumber" name="name" disabled>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Tipo"
+            [value]="personPhone.phoneNumberType.name" name="name" disabled>
+        </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="deletePerson()" color="warn">
+      Excluir
+  </button>
+  
+  <button mat-raised-button (click)="cancel()">
+      Cancelar
+  </button>
+</mat-card>
